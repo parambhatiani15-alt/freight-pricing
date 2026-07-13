@@ -1,0 +1,6 @@
+accessorial_id,accessorial_name,charge_type,amount
+ACC_TAILLIFT,Tail-lift delivery,flat,45.0
+ACC_RESI,Residential delivery,flat,18.0
+ACC_REMOTE,Remote area surcharge,per_kg,0.18
+ACC_REDEL,Redelivery fee,flat,38.0
+ACC_HAZMAT,Hazmat handling,pct_of_linehaul,8.0

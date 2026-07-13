@@ -1,0 +1,4 @@
+service_level_id,service_name,target_transit_days
+SVC_EXP,Express (Next Day),1.0
+SVC_STD,Standard,3.0
+SVC_ECO,Economy,6.0

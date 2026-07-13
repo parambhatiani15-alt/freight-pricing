@@ -1,0 +1,14 @@
+# Private working notes — not part of the public portfolio
+CLAUDE.md
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node / Next.js (dashboard/ has its own .gitignore too)
+node_modules/
+.next/
+.env.local
+.vercel
+*.log

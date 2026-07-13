@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-route/20;
+  }
+  :focus-visible {
+    outline: 2px solid #1F6E8C;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-mono uppercase tracking-[0.14em] text-slate-400;
+  }
+  .card {
+    @apply bg-paper-card border border-line rounded-sm;
+  }
+  .waybill-code {
+    @apply font-mono text-xs tracking-wide text-slate-400;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

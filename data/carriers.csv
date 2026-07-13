@@ -1,0 +1,7 @@
+carrier_id,carrier_name,mode,on_time_pct,tender_accept_pct,damage_rate_pct,notes
+CAR01,Austral Roadlink,road,96.5,97.0,0.18,Primary metro/interstate road carrier
+CAR02,Southern Cross Freight,road,94.0,93.5,0.31,Competitive on regional lanes
+CAR03,Interstate Rail Co,intermodal,91.0,99.0,0.12,"Best cost on long-haul interstate, slower transit"
+CAR04,QuickHaul Express,road,98.0,95.0,0.22,"Premium express, higher cost"
+CAR05,Outback Carriers,road,89.5,90.0,0.4,Best coverage for remote/regional
+CAR06,Metro Cartage Co,road,97.2,96.0,0.15,"Metro cartage specialist, not competitive interstate"

@@ -1,0 +1,13 @@
+lane_id,origin_city,origin_state,dest_city,dest_state,distance_km,lane_type
+L01,Melbourne,VIC,Sydney,NSW,880,interstate
+L02,Melbourne,VIC,Brisbane,QLD,1675,interstate
+L03,Melbourne,VIC,Adelaide,SA,730,interstate
+L04,Melbourne,VIC,Perth,WA,3420,interstate
+L05,Sydney,NSW,Brisbane,QLD,920,interstate
+L06,Melbourne,VIC,Geelong,VIC,75,metro
+L07,Melbourne,VIC,Dandenong,VIC,35,metro
+L08,Melbourne,VIC,Mildura,VIC,550,regional
+L09,Melbourne,VIC,Bendigo,VIC,150,regional
+L10,Melbourne,VIC,Albury,NSW,325,regional
+L11,Melbourne,VIC,Darwin,NT,3750,regional
+L12,Sydney,NSW,Perth,WA,4130,interstate

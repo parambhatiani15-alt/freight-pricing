@@ -1,0 +1,13 @@
+customer_id,customer_name,segment,volume_tier,onboarded_date
+CUST01,Bendigo FoodWorks Group,SME,Low,2024-10-15
+CUST02,Southern Ranges Retail,Mid-Market,Medium,2024-10-20
+CUST03,Cascade Building Supplies,Enterprise,High,2024-10-05
+CUST04,Yarra Valley Wines Co,SME,Low,2024-11-01
+CUST05,Bayside Furniture Direct,Mid-Market,Medium,2024-11-10
+CUST06,Northline Electrical Wholesale,Mid-Market,Medium,2024-12-01
+CUST07,Peninsula Produce Co,SME,Low,2025-01-15
+CUST08,TitanFit Sporting Goods,Mid-Market,Medium,2025-02-01
+CUST09,Alpine Outdoor Equipment,SME,Low,2025-03-10
+CUST10,Redgum Timber & Hardware,Enterprise,High,2024-10-25
+CUST11,Coastal Appliance Distributors,Enterprise,High,2025-01-05
+CUST12,Metro Office Supplies,SME,Low,2025-04-01
