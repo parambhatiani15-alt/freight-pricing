@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable}`}>
       <body>
         <NavBar />
-        <main className="max-w-6xl mx-auto px-6 pb-24">{children}</main>
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 lg:pb-24">{children}</main>
       </body>
     </html>
   );

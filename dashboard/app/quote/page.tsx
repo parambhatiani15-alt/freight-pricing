@@ -57,7 +57,7 @@ export default async function QuotePage() {
   }
 
   return (
-    <div className="mt-10">
+    <div className="mt-6 sm:mt-10">
       <div className="max-w-2xl">
         <h2 className="text-2xl font-display font-bold">Quote a lane</h2>
         <p className="text-sm text-slate-400 mt-1.5">

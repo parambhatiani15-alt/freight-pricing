@@ -34,7 +34,7 @@ export default function MarginWaterfall({
 
   return (
     <div>
-      <div className="flex items-baseline justify-between mb-2">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3 mb-2">
         <span className="eyebrow">Margin waterfall</span>
         <span className="font-mono text-xs text-slate-400">
           target {targetMarginPct.toFixed(1)}% &middot; actual{" "}
@@ -74,7 +74,7 @@ export default function MarginWaterfall({
         />
       </div>
 
-      <div className="flex items-center gap-4 mt-2 text-xs text-slate-400 font-mono">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-slate-400 font-mono">
         <LegendDot className="bg-ink-700" label="linehaul" />
         <LegendDot className="bg-slate-400" label="accessorials" />
         <LegendDot className={FLAG_COLOR[flag]} label="margin" />
@@ -83,7 +83,7 @@ export default function MarginWaterfall({
         </span>
       </div>
 
-      <dl className="grid grid-cols-2 gap-x-6 gap-y-1.5 mt-4 font-mono text-sm">
+      <dl className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-1.5 mt-4 font-mono text-sm">
         <Row label="Linehaul + fuel levy" value={linehaulBuyWithLevy} />
         <Row label="Accessorials" value={accessorialBuy} />
         <Row label="Buy cost (total)" value={buyCost} strong />

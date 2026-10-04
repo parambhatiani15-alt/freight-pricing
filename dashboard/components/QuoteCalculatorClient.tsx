@@ -13,6 +13,7 @@ import type {
   CustomerRateCard,
 } from "@/lib/types";
 import RouteManifestCard from "./RouteManifestCard";
+import MarginFlag from "./MarginFlag";
 
 interface Props {
   lanes: Lane[];
@@ -90,13 +91,13 @@ export default function QuoteCalculatorClient({
   const serviceLevel = serviceLevels.find((s) => s.service_level_id === serviceLevelId);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-8 mt-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-8 mt-6">
       {/* form */}
-      <div className="card p-6 h-fit space-y-5">
+      <div className="card p-4 sm:p-6 h-fit space-y-5">
         <div>
           <label className="eyebrow block mb-1.5">Lane</label>
           <select
-            className="w-full border border-line rounded-sm px-3 py-2 text-sm bg-paper-card"
+            className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm bg-paper-card"
             value={laneId}
             onChange={(e) => setLaneId(e.target.value)}
           >
@@ -111,7 +112,7 @@ export default function QuoteCalculatorClient({
         <div>
           <label className="eyebrow block mb-1.5">Service level</label>
           <select
-            className="w-full border border-line rounded-sm px-3 py-2 text-sm bg-paper-card"
+            className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm bg-paper-card"
             value={serviceLevelId}
             onChange={(e) => setServiceLevelId(e.target.value)}
           >
@@ -130,7 +131,7 @@ export default function QuoteCalculatorClient({
               type="number"
               min={0.1}
               step={0.1}
-              className="w-full border border-line rounded-sm px-3 py-2 text-sm font-mono bg-paper-card"
+              className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm font-mono bg-paper-card"
               value={actualWeightKg}
               onChange={(e) => setActualWeightKg(parseFloat(e.target.value) || 0)}
             />
@@ -141,7 +142,7 @@ export default function QuoteCalculatorClient({
               type="number"
               min={0.01}
               step={0.01}
-              className="w-full border border-line rounded-sm px-3 py-2 text-sm font-mono bg-paper-card"
+              className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm font-mono bg-paper-card"
               value={volumeM3}
               onChange={(e) => setVolumeM3(parseFloat(e.target.value) || 0)}
             />
@@ -151,7 +152,7 @@ export default function QuoteCalculatorClient({
         <div>
           <label className="eyebrow block mb-1.5">Customer</label>
           <select
-            className="w-full border border-line rounded-sm px-3 py-2 text-sm bg-paper-card"
+            className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm bg-paper-card"
             value={customerId}
             onChange={(e) => setCustomerId(e.target.value)}
           >
@@ -168,7 +169,7 @@ export default function QuoteCalculatorClient({
           <label className="eyebrow block mb-1.5">Accessorials</label>
           <div className="space-y-1.5">
             {accessorials.map((a) => (
-              <label key={a.accessorial_id} className="flex items-center gap-2 text-sm">
+              <label key={a.accessorial_id} className="flex items-center gap-3 text-sm py-1.5 sm:py-0">
                 <input
                   type="checkbox"
                   checked={selectedAccessorials.includes(a.accessorial_id)}
@@ -190,7 +191,7 @@ export default function QuoteCalculatorClient({
           <label className="eyebrow block mb-1.5">Quote date</label>
           <input
             type="date"
-            className="w-full border border-line rounded-sm px-3 py-2 text-sm font-mono bg-paper-card"
+            className="w-full border border-line rounded-sm px-3 py-2.5 sm:py-2 text-base sm:text-sm font-mono bg-paper-card"
             value={quoteDate}
             onChange={(e) => setQuoteDate(e.target.value)}
           />
@@ -219,6 +220,15 @@ export default function QuoteCalculatorClient({
 
       {/* result */}
       <div>
+        {quote && (
+          <div className="lg:hidden fixed bottom-0 inset-x-0 z-10 bg-ink text-paper border-t border-ink-700 px-4 py-3 flex items-center justify-between shadow-[0_-2px_8px_rgba(0,0,0,0.15)]">
+            <div className="flex items-center gap-3">
+              <MarginFlag flag={quote.marginFlag} />
+              <span className="font-mono text-xs text-paper/70">margin {quote.marginPct.toFixed(1)}%</span>
+            </div>
+            <span className="text-xl font-display font-bold">${quote.sellPrice.toFixed(2)}</span>
+          </div>
+        )}
         {quote && lane ? (
           <RouteManifestCard quote={quote} lane={lane} carrier={carrier} serviceLevel={serviceLevel} quoteDate={quoteDate} />
         ) : (

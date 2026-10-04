@@ -20,17 +20,17 @@ export default function AccountHealthTable({ customers, summary }: Props) {
     .sort((a, b) => b.margin_gap_pp - a.margin_gap_pp);
 
   return (
-    <div className="card overflow-hidden">
+    <div className="card overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-line text-left">
             <Th>Account</Th>
-            <Th>Segment</Th>
+            <Th className="hidden md:table-cell">Segment</Th>
             <Th align="right">Realized</Th>
-            <Th align="right">Target</Th>
+            <Th align="right" className="hidden sm:table-cell">Target</Th>
             <Th align="right">Gap (pp)</Th>
             <Th>Status</Th>
-            <Th align="right">Shipments</Th>
+            <Th align="right" className="hidden sm:table-cell">Shipments</Th>
           </tr>
         </thead>
         <tbody>
@@ -44,34 +44,43 @@ export default function AccountHealthTable({ customers, summary }: Props) {
                   onClick={() => setExpanded(isOpen ? null : row.customer_id)}
                   className="border-b border-line last:border-0 cursor-pointer hover:bg-paper transition-colors"
                 >
-                  <td className="px-4 py-3">
+                  <td className="px-3 sm:px-4 py-3">
                     <div className="font-medium">{cust?.customer_name ?? row.customer_id}</div>
-                    <div className="waybill-code">{row.customer_id}</div>
+                    <div className="waybill-code">
+                      {row.customer_id}
+                      <span className="md:hidden"> &middot; {cust?.segment}</span>
+                      {row.low_confidence && (
+                        <span className="sm:hidden" title="Fewer than 8 shipments this month — read with caution">
+                          {" "}
+                          *
+                        </span>
+                      )}
+                    </div>
                   </td>
-                  <td className="px-4 py-3 text-slate-400">{cust?.segment}</td>
-                  <td className="px-4 py-3 text-right font-mono">{row.realized_margin_pct.toFixed(1)}%</td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-400">
+                  <td className="hidden md:table-cell px-4 py-3 text-slate-400">{cust?.segment}</td>
+                  <td className="px-3 sm:px-4 py-3 text-right font-mono">{row.realized_margin_pct.toFixed(1)}%</td>
+                  <td className="hidden sm:table-cell px-4 py-3 text-right font-mono text-slate-400">
                     {row.target_margin_pct.toFixed(1)}%
                   </td>
                   <td
-                    className={`px-4 py-3 text-right font-mono font-medium ${
+                    className={`px-3 sm:px-4 py-3 text-right font-mono font-medium ${
                       row.margin_gap_pp > 0 ? "text-rust" : "text-pine"
                     }`}
                   >
                     {row.margin_gap_pp > 0 ? "+" : ""}
                     {row.margin_gap_pp.toFixed(1)}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-3 sm:px-4 py-3">
                     <MarginFlag flag={row.margin_flag} />
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-slate-400">
+                  <td className="hidden sm:table-cell px-4 py-3 text-right font-mono text-slate-400">
                     {row.shipment_count}
                     {row.low_confidence && <span title="Fewer than 8 shipments this month — read with caution">*</span>}
                   </td>
                 </tr>
                 {isOpen && (
                   <tr className="bg-paper border-b border-line">
-                    <td colSpan={7} className="px-6 py-5">
+                    <td colSpan={7} className="px-4 sm:px-6 py-5">
                       <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-6">
                         <div>
                           <div className="eyebrow mb-2">12-month margin trend vs. target</div>
@@ -132,9 +141,17 @@ function readingNote(row: MonthlyAccountMarginSummary, history: MonthlyAccountMa
   return "Margin has tracked close to target over the visible history — no action indicated.";
 }
 
-function Th({ children, align = "left" }: { children: React.ReactNode; align?: "left" | "right" }) {
+function Th({
+  children,
+  align = "left",
+  className = "",
+}: {
+  children: React.ReactNode;
+  align?: "left" | "right";
+  className?: string;
+}) {
   return (
-    <th className={`px-4 py-3 eyebrow font-normal ${align === "right" ? "text-right" : "text-left"}`}>
+    <th className={`px-3 sm:px-4 py-3 eyebrow font-normal ${align === "right" ? "text-right" : "text-left"} ${className}`}>
       {children}
     </th>
   );
