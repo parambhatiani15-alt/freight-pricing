@@ -1,0 +1,32 @@
+name: Keep Supabase awake
+
+# Supabase free-tier projects pause after ~7 days without API traffic.
+# Loading the live pages makes the server query Supabase, so this counts as
+# activity. A page showing its error card fails the job and GitHub emails the owner.
+on:
+  schedule:
+    - cron: "17 21 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load live pages and check for data
+        run: |
+          check() {
+            url="$1"; expect="$2"
+            for attempt in 1 2 3; do
+              body=$(curl -sL --max-time 60 "$url" || true)
+              if echo "$body" | grep -q "$expect" && ! echo "$body" | grep -q "Couldn&#x27;t load\|Couldn't load"; then
+                echo "OK: $url"
+                return 0
+              fi
+              echo "Attempt $attempt failed for $url; retrying in 30s"
+              sleep 30
+            done
+            echo "FAILED: $url did not render data"
+            return 1
+          }
+          check "https://freight-pricing.vercel.app/" "Portfolio health"
+          check "https://freight-pricing.vercel.app/quote" "Quote a lane"
